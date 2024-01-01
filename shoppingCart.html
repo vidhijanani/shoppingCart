@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+    <a class="navbar-brand" href="#">Product Page</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+       
+  <div class="icons ms-auto me-3 p-2">
+   <button class="btn btn-secondary " > <i class="fa-regular fa-heart"></i> </button>
+    <button class="btn btn-primary"  type="button" class="btn btn-primary" data-bs-target="#cart-modal" data-bs-toggle="modal">
+      <i class="fa-solid fa-cart-shopping" ></i> 
+      <div class="badge badge-light badge-cart">0</div>
+   
+    </button>
+  </div>
+  </nav>
+
+  <!-- modal -->
+<div class="modal" tabindex="-1" id="cart-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Shopping Cart</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p class="text-white">Modal body text goes here.</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      <button class='btn btn-outline-primary' onclick="buyNow(i)">Buy Now </button>
+     
+      </div>
+    </div>
+  </div>
+</div>
+<!-- modal ends  -->
+
+<!-- modal 2 -->
+
+<div class="modal" tabindex="-1" id="Summary-modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal2</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>        
+      <div class="modal-body1">
+        <p> Your selected item is displayed here </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal 2 ends -->
+
+  <div class="container-fluid bg-dark text-white ">
+    <h2 CLASS="display-5 text-center  p-2"> Products</h2>
+    <div id="productContainer" class="row"></div>
+  </div>
+
+  <script>
+    const products = [
+
+    { name: "Embellished Wristlet with Chain Strap", price: 699, image: "https://assets.ajio.com/medias/sys_master/root/20220808/gY49/62f0fd22aeb26921afceb585/-473Wx593H-450152449-beige-MODEL.jpg"},  
+    { name: "GG MARMONT MATELASSÉ MINI BAG", price:799, image: "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1659974412/446744_DTDIT_9022_001_055_0000_Light-GG-Marmont-matelass-mini-bag.jpg"},  
+    { name: "GG MARMONT MINI BAG", price: 899, image: "https://media.gucci.com/style/DarkGray_Center_0_0_800x800/1687451590/751526_AACCE_1061_001_070_0026_Light-GG-Marmont-mini-bag.jpg"},
+   
+    { name: "GUCCI HORSEBIT CHAIN SMALL SHOULDER BAG", price: 1099, image: "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1688578315/764339_AACU1_5931_003_100_0000_Light-Gucci-Horsebit-Chain-small-shoulder-bag.jpg"},
+    { name: "GUCCI HORSEBIT CHAIN SMALL SHOULDER BAG", price: 1099, image: "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1688578315/764339_AACU1_5931_003_100_0000_Light-Gucci-Horsebit-Chain-small-shoulder-bag.jpg"},
+    { name: "GUCCI HORSEBIT CHAIN MEDIUM SHOULDER BAG", price: 599, image: "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1688577336/764255_AACU1_3506_003_100_0000_Light-Gucci-Horsebit-Chain-medium-shoulder-bag.jpg"},  
+    { name: "GUCCI HORSEBIT 1955 SMALL BAG", price: 699, image: "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1697819407/602204_AACPI_9541_003_100_0000_Light-Gucci-Horsebit-1955-small-bag.jpg"},  
+    { name: "OPHIDIA GG MEDIUM TOTE", price: 799, image: "https://media.gucci.com/style/DarkGray_Center_0_0_1200x1200/1678149015/631685_96IWB_8745_003_100_0000_Light-Ophidia-GG-medium-tote.jpg"} ,  
+    { name: "AVAASA", price: 699, image: "https://assets.ajio.com/medias/sys_master/root/20220808/pC5m/62f0f800aeb26921afce86e1/-473Wx593H-450152984-black-MODEL.jpg"}  
+    ]
+
+
+   var item = '';
+   for(i=0; i<products.length; i++){
+    item += `<div class='card col-md-3 m-4 p-2'>
+      <image src='${products[i].image}' height='300px'>
+      <h4 class='text-center'>${products[i].name}</h4>
+      <p class='text-center'>$ ${products[i].price} / </p>
+      <button class='btn btn-outline-primary ' onclick='addtoCart(${i})' >Add to cart</button>
+      </div>`
+   }
+    document.getElementById('productContainer').innerHTML = item;
+ 
+ const cart = [];
+// document.querySelector('.badge-cart').innerHTML = cart.length;
+
+      function addtoCart(i){
+      cart.push(products[i]);
+      document.querySelector('.badge-cart').innerHTML = cart.length;
+      console.log(cart);
+      // document.querySelector('.modal-body').innerHTML = displayCart;
+      DisplayCart();
+ }
+
+ function DisplayCart(){
+
+ var displayCart = '';
+   for(i=0; i<cart.length; i++){
+    displayCart += `<div class='card col-md-12 m-4 p-2' id="remove-${i}">
+      <image src='${cart[i].image}' height='300px'>
+      <h4 class='text-center'> ${cart[i].name}</h4>
+      <p class='text-center'> $ ${cart[i].price} /</p>
+      <button class='btn btn-outline-primary ' onclick='removeFromCart(${i})' >Remove</button>
+      </div>`
+   }
+   document.querySelector('.modal-body').innerHTML = displayCart;
+  }
+
+  function removeFromCart(i){
+    // cart.splice(0,-1, " Your cart is empty");  
+    // cart.pop(i);
+    // alert(i);
+    console.log("In cart products");
+
+    // in order to remove products from cart 
+    cart.splice(i,1);
+    console.log(cart);
+
+    // in order to decreaee number of products the user removes from cart 
+    document.querySelector('.badge-cart').innerHTML = cart.length;
+    // pro ppl logic 
+    // in order to hide/remove number of products the user removes from cart 
+
+    document.getElementById('remove-'+i).style.display = "none";
+    // document.getElementById('card').textContent = "Thank you for shoppping with us"
+
+    // document.getElementById('.card-'+i).style.display = "none";
+
+  }
+
+  function buyNow(i){
+        
+    localStorage.setItem('cart', JSON.stringify(cart)); 
+
+    // console.log(cart);
+    // localStorage.setItem('image',cart[i].image);
+    console.log(localStorage.getItem('cart'));
+    window.location.href = 'checkout.html';
+
+//     let checkoutPg = '';
+//     for(i=0; i<cart.length; i++){
+//     checkoutPg += `<div class='container col-md-12 bg-black'>
+//                   <image src='${cart[i].image}' height='300px'> 
+//                   <h4 class='text-center'> ${cart[i].name}</h4>
+//                   <p class='text-center'> ${cart[i].price}</p>
+//                   </div>`
+// }
+
+// document.querySelector(".container").innerHTML = checkoutPg;      
+
+  }
+
+      
+  
+
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</body>
+</html>
